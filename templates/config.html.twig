@@ -54,4 +54,17 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="row ps-4">
+
+        {{ fields.dropdownYesNo(
+            'taskdescription_as_costs_name',
+            item.fields['taskdescription_as_costs_name'],
+            __("Add task description as cost name", "cost"),
+            options
+        ) }}
+
+    </div>
+</div>
+
 {{ include('components/form/buttons.html.twig') }}

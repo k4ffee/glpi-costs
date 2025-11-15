@@ -175,5 +175,20 @@ class PluginCostsConfig extends CommonDBTM
                 'taskdescription'   => 0,
             ]);
         }
+
+        // add new column 'taskdescription_as_costs_name'
+        $columnName = "taskdescription_as_costs_name";
+        if (!$DB->fieldExists($table, $columnName, false)) {
+            $migration->displayMessage("Adding colum $columnName to $table");
+            $migration->addField($table, $columnName, 'boolean');
+            $migration->migrationOneTable($table);
+
+            $config = new self();
+            $config->update([
+                'id' => 1,
+                $columnName => 0,
+            ]);
+        }
+        unset($columnName);
     }
 }
